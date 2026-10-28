@@ -1,0 +1,14 @@
+<svg viewBox="17.0667008 169.96249600000002 470.016 116.736" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" style="max-height: 500px" width="470.016" height="116.736">
+  <defs>
+    <clipPath id="canvas-clip">
+      <rect ry="96" rx="96" height="512" width="512"/>
+    </clipPath>
+  </defs>
+  <rect clip-path="url(#canvas-clip)" fill="none" ry="96" rx="96" height="512" width="512"/>
+  <g clip-path="url(#canvas-clip)">
+    <g transform="rotate(0, 256, 256)">
+      
+      <text fill="#615FFF" font-size="110" font-weight="700" font-family="'Outfit', sans-serif" text-anchor="middle" y="256" x="256">resumer.</text>
+    </g>
+  </g>
+</svg>
