@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
@@ -13,13 +12,13 @@ const Hero = () => {
 
           <div className="flex gap-2">
             <Link
-              to="/app?state=register"
+              to="/login?state=register"
               className="hidden md:block px-6 py-2 bg-indigo-500 hover:bg-indigo-700 active:scale-95 transition-all rounded-full text-white"
             >
               Get started
             </Link>
             <Link
-              to="/app?state=login"
+              to="/login?state=login"
               className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900"
             >
               Login

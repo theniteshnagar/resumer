@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { authApi, setSession } from "../lib/api";
 
 const Login = () => {
 
@@ -6,6 +8,9 @@ const Login = () => {
   const urlState = query.get('state')
 
   const [state, setState] = React.useState(urlState || "login");
+  const navigate = useNavigate();
+  const [error, setError] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
 
   const [formData, setFormData] = React.useState({
     name: "",
@@ -15,6 +20,17 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError("");
+    try {
+      const result = state === "login" ? await authApi.login(formData) : await authApi.register(formData);
+      setSession(result.token, result.user);
+      navigate("/app");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -32,6 +48,7 @@ const Login = () => {
           {state === "login" ? "Login" : "Sign up"}
         </h1>
         <p className="text-gray-500 text-sm mt-2">Please {state} to continue</p>
+        {error && <p className="mt-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
         {state !== "login" && (
           <div className="flex items-center mt-6 w-full bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
             <svg
@@ -121,7 +138,7 @@ const Login = () => {
           type="submit"
           className="mt-2 w-full h-11 rounded-full text-white bg-indigo-500 hover:opacity-90 transition-opacity"
         >
-          {state === "login" ? "Login" : "Sign up"}
+          {loading ? "Please wait..." : state === "login" ? "Login" : "Sign up"}
         </button>
         <p
           onClick={() =>
