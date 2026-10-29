@@ -1,11 +1,12 @@
-import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { clearSession, getUser } from "../lib/api";
 
 const Navbar = () => {
-  const user = { name: "Jhon Doe" };
+  const user = getUser() || { name: "Guest" };
   const navigate = useNavigate();
 
   const logoutUser = () => {
+    clearSession();
     navigate("/");
   };
 
